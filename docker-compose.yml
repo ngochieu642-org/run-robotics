@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  customer-service:
+    build:
+      context: .
+    container_name: robotics-transformer-demo
+    entrypoint: tail -f /dev/null
+    volumes:
+      - ${PWD}:/test
+    networks:
+      - robotics-transformer
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: "100k"
+
+networks:
+  robotics-transformer:
+    driver: bridge
