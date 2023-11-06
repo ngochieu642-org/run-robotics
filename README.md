@@ -1,5 +1,11 @@
 # How to run
 
+- Clone
+```bash
+git clone https://github.com/ngochieu642/run-robotics_transformer.git
+cd run-robotics_transformer
+ ```
+
 - build
 
 ```bash
