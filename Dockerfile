@@ -11,10 +11,10 @@ RUN apt update  \
 RUN addgroup --system robotics-group && adduser --ingroup robotics-group robotics
 USER robotics:robotics-group
 
-WORKDIR /home/robotics/app
-
 # tensor2robot
-COPY --chown=robotics:robotics-group tensor2robot ./tensor2robot-py/src/tensor2robot
+WORKDIR /home/robotics/app
+RUN mkdir -p tensor2robot-py/src \
+    && git clone -b  hieu/test-docker https://github.com/ngochieu642/tensor2robot.git tensor2robot-py/src/tensor2robot
 
 WORKDIR /home/robotics/app/tensor2robot-py/src/tensor2robot/proto
 # Generate t2r_p2b.py
@@ -34,5 +34,4 @@ RUN pip install .
 
 # robotics_transformer
 WORKDIR /home/robotics/app
-
-COPY --chown=robotics:robotics-group robotics_transformer ./robotics_transformer
+RUN git clone -b  hieu/test-docker https://github.com/ngochieu642/robotics_transformer.git
